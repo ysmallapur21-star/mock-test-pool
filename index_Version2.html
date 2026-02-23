@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free IIT Roorkee Mathematics MA Mock Test - 65 Questions, 3 Hours, Live Scoring">
+    <meta name="keywords" content="IIT Roorkee, Mock Test, Mathematics, MA exam, Practice Test">
+    <title>IIT Roorkee Mathematics MA Mock Test - Free Online Practice</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(145deg, #0a1f33 0%, #1e3a5f 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .mocktest {
+            width: 100%;
+            max-width: 1600px;
+            background: rgba(255, 255, 255, 0.97);
+            backdrop-filter: blur(10px);
+            border-radius: 48px;
+            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.4);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #002856, #0f4c81);
+            color: white;
+            padding: 25px 35px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .logo h1 {
+            font-size: 2.3rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 5px;
+        }
+
+        .logo p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .timer {
+            background: rgba(255, 255, 255, 0.12);
+            padding: 15px 40px;
+            border-radius: 60px;
+            border: 1px solid rgba(255,255,255,0.2);
+            text-align: center;
+        }
+
+        .timer-label {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.8;
+        }
+
+        .timer-display {
+            font-size: 3rem;
+            font-weight: 700;
+            font-family: 'Courier New', monospace;
+            color: #ffd966;
+            line-height: 1.2;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 280px 1fr 300px;
+            background: #f4f9ff;
+            max-height: 700px;
+        }
+
+        .left-sidebar {
+            background: #e9f0fa;
+            padding: 25px 20px;
+            border-right: 2px solid #cbdae9;
+            height: 700px;
+            overflow-y: auto;
+        }
+
+        .panel-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #003d66;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 3px solid #7fa9d0;
+        }
+
+        .section-block {
+            margin-bottom: 35px;
+        }
+
+        .section-header {
+            font-weight: 600;
+            color: #0f4c81;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .q-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .q-btn {
+            aspect-ratio: 1;
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            background: white;
+            color: #003366;
+            box-shadow: 0 3px 8px rgba(0,30,60,0.1);
+            transition: all 0.2s;
+            border: 2px solid transparent;
+        }
+
+        .q-btn:hover {
+            transform: scale(1.05);
+            background: #d9eaff;
+        }
+
+        .q-btn.current {
+            border: 3px solid #f9a826;
+            background: #fff1d6;
+            font-weight: 700;
+        }
+
+        .q-btn.answered {
+            background: #2b8c4c;
+            color: white;
+        }
+
+        .q-btn.review {
+            background: #c97c2e;
+            color: white;
+        }
+
+        .q-btn.answered.review {
+            background: #9b5e2e;
+            color: white;
+        }
+
+        .legend {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.95rem;
+        }
+
+        .legend-color {
+            width: 24px;
+            height: 24px;
+            border-radius: 8px;
+        }
+
+        .center-panel {
+            background: white;
+            padding: 35px;
+            height: 700px;
+            overflow-y: auto;
+        }
+
+        .q-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .q-badge {
+            background: #003e6b;
+            color: white;
+            padding: 8px 28px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+
+        .q-meta {
+            background: #e8f0fe;
+            color: #003e6b;
+            padding: 8px 28px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .question-text {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin: 25px 0 35px;
+            padding: 25px;
+            background: #f8fbff;
+            border-radius: 28px;
+            border-left: 6px solid #1d72b8;
+            box-shadow: 0 6px 16px rgba(0,40,80,0.06);
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin: 30px 0;
+        }
+
+        .option {
+            display: flex;
+            align-items: center;
+            padding: 16px 25px;
+            background: #f5f9ff;
+            border: 2px solid #d4e2f5;
+            border-radius: 60px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 1.1rem;
+        }
+
+        .option:hover {
+            background: #e1edff;
+            border-color: #7aa9db;
+            transform: translateX(6px);
+        }
+
+        .option.selected {
+            background: #c3e0ff;
+            border: 3px solid #0f62ac;
+        }
+
+        .option-prefix {
+            font-weight: 700;
+            margin-right: 25px;
+            background: #0f62ac;
+            color: white;
+            width: 42px;
+            height: 42px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 1.2rem;
+        }
+
+        .option.selected .option-prefix {
+            background: #003a70;
+        }
+
+        input[type="radio"] {
+            display: none;
+        }
+
+        .nav-btns {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            padding: 16px 28px;
+            border: none;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-prev {
+            background: #e3ecf5;
+            color: #1d4e7c;
+        }
+
+        .nav-next {
+            background: #0f62ac;
+            color: white;
+            margin-left: auto;
+        }
+
+        .nav-review {
+            background: #c97c2e;
+            color: white;
+        }
+
+        .nav-btn:hover:not(:disabled) {
+            opacity: 0.9;
+            transform: scale(1.05);
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .right-sidebar {
+            background: #e9f0fa;
+            padding: 25px 20px;
+            border-left: 2px solid #cbdae9;
+            height: 700px;
+            overflow-y: auto;
+        }
+
+        .stats-card {
+            background: white;
+            border-radius: 24px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 6px 16px rgba(0,20,40,0.08);
+        }
+
+        .stats-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #003d66;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #cbddee;
+            padding-bottom: 12px;
+        }
+
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            margin: 16px 0;
+            font-size: 1.1rem;
+        }
+
+        .stat-value {
+            font-weight: 700;
+            color: #0f62ac;
+        }
+
+        .action-btn {
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: 0.2s;
+            margin: 8px 0;
+        }
+
+        .action-btn:hover:not(:disabled) {
+            opacity: 0.9;
+            transform: scale(1.02);
+        }
+
+        .submit-btn {
+            background: #2b8c4c;
+            color: white;
+        }
+
+        .reset-btn {
+            background: #dc3545;
+            color: white;
+        }
+
+        .modal {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            visibility: hidden;
+            opacity: 0;
+            transition: 0.3s;
+        }
+
+        .modal.show {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 40px;
+            border-radius: 48px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .modal-btns {
+            display: flex;
+            gap: 16px;
+            margin-top: 30px;
+        }
+
+        .modal-btn {
+            flex: 1;
+            padding: 16px;
+            border: none;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: 0.2s;
+        }
+
+        .modal-btn:hover {
+            opacity: 0.9;
+            transform: scale(1.02);
+        }
+
+        .result-box {
+            background: linear-gradient(135deg, #003366, #0f62ac);
+            color: white;
+            padding: 30px;
+            border-radius: 28px;
+            margin-top: 20px;
+        }
+
+        .score {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin: 15px 0;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #d9e6f5;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #7f9fc0;
+            border-radius: 10px;
+        }
+
+        @media (max-width: 1200px) {
+            .grid {
+                grid-template-columns: 1fr;
+                max-height: none;
+            }
+            .left-sidebar, .center-panel, .right-sidebar {
+                height: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="mocktest">
+    <div class="header">
+        <div class="logo">
+            <h1>🎓 IIT ROORKEE · MA MOCK TEST</h1>
+            <p>Mathematics · 65 Questions · 3 Hours · Negative Marking</p>
+        </div>
+        <div class="timer">
+            <div class="timer-label">Time Left</div>
+            <div class="timer-display" id="timer">03:00:00</div>
+        </div>
+    </div>
+
+    <div class="grid">
+        <div class="left-sidebar">
+            <div class="panel-title">📌 QUESTION NAVIGATOR</div>
+            
+            <div class="section-block">
+                <div class="section-header">
+                    <span>General Aptitude (Q1-10)</span>
+                    <span id="gaProgress">0/10</span>
+                </div>
+                <div class="q-grid" id="gridGA"></div>
+            </div>
+
+            <div class="section-block">
+                <div class="section-header">
+                    <span>Mathematics I (Q11-35)</span>
+                    <span id="m1Progress">0/25</span>
+                </div>
+                <div class="q-grid" id="gridM1"></div>
+            </div>
+
+            <div class="section-block">
+                <div class="section-header">
+                    <span>Mathematics II (Q36-65)</span>
+                    <span id="m2Progress">0/30</span>
+                </div>
+                <div class="q-grid" id="gridM2"></div>
+            </div>
+
+            <div class="legend">
+                <div class="legend-item"><span class="legend-color" style="background:#2b8c4c;"></span> Answered</div>
+                <div class="legend-item"><span class="legend-color" style="background:#c97c2e;"></span> Marked for Review</div>
+                <div class="legend-item"><span class="legend-color" style="background:#f9a826; border:2px solid #003366;"></span> Current</div>
+                <div class="legend-item"><span class="legend-color" style="background:white; border:2px solid #003366;"></span> Not Visited</div>
+            </div>
+        </div>
+
+        <div class="center-panel" id="questionPanel"></div>
+
+        <div class="right-sidebar">
+            <div class="stats-card">
+                <div class="stats-title">📊 PROGRESS</div>
+                <div class="stat-row">
+                    <span>Total:</span>
+                    <span class="stat-value" id="totalQ">65</span>
+                </div>
+                <div class="stat-row">
+                    <span>Answered:</span>
+                    <span class="stat-value" id="answered">0</span>
+                </div>
+                <div class="stat-row">
+                    <span>For Review:</span>
+                    <span class="stat-value" id="review">0</span>
+                </div>
+                <div class="stat-row">
+                    <span>Remaining:</span>
+                    <span class="stat-value" id="remaining">65</span>
+                </div>
+            </div>
+
+            <div class="stats-card">
+                <div class="stats-title">📌 CURRENT</div>
+                <div class="stat-row">
+                    <span>Question:</span>
+                    <span class="stat-value" id="currentQ">1</span>
+                </div>
+                <div class="stat-row">
+                    <span>Marks:</span>
+                    <span class="stat-value" id="currentMarks">1</span>
+                </div>
+                <div class="stat-row">
+                    <span>Section:</span>
+                    <span class="stat-value" id="currentSec">GA</span>
+                </div>
+            </div>
+
+            <button class="action-btn" style="background:#c97c2e; color:white;" id="markReview">📌 MARK FOR REVIEW</button>
+            <button class="action-btn submit-btn" id="submitExam">✅ SUBMIT EXAM</button>
+            <button class="action-btn reset-btn" id="resetExam">⟲ RESET ALL</button>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="submitModal">
+    <div class="modal-content">
+        <h2 style="margin-bottom:20px;">📋 Confirm Submission</h2>
+        <div id="summary" style="font-size:1.2rem; margin:20px 0;"></div>
+        
+        <div class="result-box" id="resultBox" style="display:none;">
+            <div style="font-size:1.4rem;">Your Final Score</div>
+            <div class="score" id="finalScore">0</div>
+            <div id="scoreBreakdown"></div>
+        </div>
+
+        <div class="modal-btns">
+            <button class="modal-btn" style="background:#2b8c4c; color:white;" id="confirmSubmit">YES, SUBMIT</button>
+            <button class="modal-btn" style="background:#6c757d; color:white;" id="cancelSubmit">CANCEL</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    const questions = [
+        { id: 1, section: 'GA', marks: 1, correct: 0, text: 'Ravi had ______ younger brother who taught at ______ university. He was widely regarded as ______ honorable man.', options: ['a; a; an', 'the; an; a', 'a; an; a', 'an; an; a'] },
+        { id: 2, section: 'GA', marks: 1, correct: 1, text: 'The CEO\'s decision to downsize the workforce was considered myopic. Select the most appropriate replacement.', options: ['visionary', 'shortsighted', 'progressive', 'innovative'] },
+        { id: 3, section: 'GA', marks: 1, correct: 2, text: 'Average was 30.8. One student\'s marks entered as 24 instead of 42. After correction, average becomes 31.4. Students?', options: ['25', '28', '30', '32'] },
+        { id: 4, section: 'GA', marks: 1, correct: 0, text: 'P is brother of Q. S is daughter of Q. T is sister of S. R is mother of Q. Which statements are true?', options: ['R is grandmother of S', 'P is uncle of S and T', 'R has only one son', 'Q has only one daughter'] },
+        { id: 5, section: 'GA', marks: 1, correct: 2, text: 'According to the map, which statement is correct?', options: ['Library is NW of canteen', 'Hospital is east of chemistry lab', 'Chemistry lab is SE of physics lab', 'Classrooms and canteen are adjacent'] },
+        { id: 6, section: 'GA', marks: 2, correct: 2, text: 'From Chesterton\'s passage about pocket-knife and sword. Which statement is true?', options: ['Author carries mirror', 'Author decided to write poem', 'Pocket-knife is infant of sword', 'Epics are inconvenient'] },
+        { id: 7, section: 'GA', marks: 2, correct: 0, text: 'QR ∥ ST. Distance = half. What is area(△PST)/area(SQRT)?', options: ['1/3', '1/4', '2/5', '1/2'] },
+        { id: 8, section: 'GA', marks: 2, correct: 0, text: 'Fair dice rolled thrice. Probability of exactly one 6?', options: ['75/216', '1/6', '1/18', '25/216'] },
+        { id: 9, section: 'GA', marks: 2, correct: 0, text: 'Square paper folded and cut. Which pattern after unfolding?', options: ['Four corner cutouts', 'Two opposite cutouts', 'Four edge cutouts', 'Central cutout'] },
+        { id: 10, section: 'GA', marks: 2, correct: 1, text: '4 ice-cream flavors. Purchase 3 scoops. Order irrelevant. Ways?', options: ['4', '20', '24', '48'] }
+    ];
+
+    for (let i = 11; i <= 65; i++) {
+        let marks = i <= 35 ? 1 : 2;
+        let section = i <= 35 ? 'M1' : 'M2';
+        let correct = Math.floor(Math.random() * 4);
+        questions.push({
+            id: i,
+            section: section,
+            marks: marks,
+            correct: correct,
+            text: `Question ${i}: Select the correct answer from the options below.`,
+            options: ['Option A', 'Option B', 'Option C', 'Option D']
+        });
+    }
+
+    let currentIdx = 0;
+    let answers = new Array(65).fill(null);
+    let review = new Array(65).fill(false);
+    let submitted = false;
+    let timeLeft = 3 * 3600;
+    let timerInterval;
+
+    const timerEl = document.getElementById('timer');
+    const questionPanel = document.getElementById('questionPanel');
+    const gridGA = document.getElementById('gridGA');
+    const gridM1 = document.getElementById('gridM1');
+    const gridM2 = document.getElementById('gridM2');
+    const answeredSpan = document.getElementById('answered');
+    const reviewSpan = document.getElementById('review');
+    const remainingSpan = document.getElementById('remaining');
+    const currentQSpan = document.getElementById('currentQ');
+    const currentMarksSpan = document.getElementById('currentMarks');
+    const currentSecSpan = document.getElementById('currentSec');
+    const gaProgress = document.getElementById('gaProgress');
+    const m1Progress = document.getElementById('m1Progress');
+    const m2Progress = document.getElementById('m2Progress');
+    const markReviewBtn = document.getElementById('markReview');
+    const submitBtn = document.getElementById('submitExam');
+    const resetBtn = document.getElementById('resetExam');
+    const modal = document.getElementById('submitModal');
+    const summaryDiv = document.getElementById('summary');
+    const resultBox = document.getElementById('resultBox');
+    const finalScore = document.getElementById('finalScore');
+    const scoreBreakdown = document.getElementById('scoreBreakdown');
+    const confirmSubmit = document.getElementById('confirmSubmit');
+    const cancelSubmit = document.getElementById('cancelSubmit');
+
+    function updateTimerDisplay() {
+        const h = Math.floor(timeLeft / 3600);
+        const m = Math.floor((timeLeft % 3600) / 60);
+        const s = timeLeft % 60;
+        timerEl.textContent = `${h.toString().padStart(2,'0')}:${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`;
+        
+        if (timeLeft < 300) {
+            timerEl.style.color = '#ff6b6b';
+        }
+    }
+
+    function startTimer() {
+        timerInterval = setInterval(() => {
+            if (!submitted && timeLeft > 0) {
+                timeLeft--;
+                updateTimerDisplay();
+            } else if (timeLeft === 0 && !submitted) {
+                clearInterval(timerInterval);
+                alert('⏰ Time is up! Auto-submitting your exam.');
+                submitExam();
+            }
+        }, 1000);
+    }
+
+    function renderQuestion() {
+        const q = questions[currentIdx];
+        const ans = answers[q.id-1];
+        
+        let html = `
+            <div class="q-header">
+                <span class="q-badge">Question ${q.id}</span>
+                <span class="q-meta">${q.marks} Mark${q.marks>1?'s':''} · ${q.section}</span>
+            </div>
+            <div class="question-text">${q.text}</div>
+            <div class="options">
+        `;
+
+        q.options.forEach((opt, idx) => {
+            const letter = String.fromCharCode(65+idx);
+            const selected = ans === idx ? 'selected' : '';
+            html += `
+                <label class="option ${selected}">
+                    <input type="radio" name="q" value="${idx}" ${ans===idx?'checked':''}>
+                    <span class="option-prefix">${letter}</span>
+                    <span>${opt}</span>
+                </label>
+            `;
+        });
+
+        html += `</div>
+            <div class="nav-btns">
+                <button class="nav-btn nav-prev" id="prevBtn" ${currentIdx===0?'disabled':''}>← Previous</button>
+                <button class="nav-btn nav-review" id="reviewBtn">${review[q.id-1] ? '✓' : '📌'} Mark for Review</button>
+                <button class="nav-btn nav-next" id="nextBtn" ${currentIdx===64?'disabled':''}>Next →</button>
+            </div>
+        `;
+
+        questionPanel.innerHTML = html;
+
+        document.querySelectorAll('input[name="q"]').forEach(r => {
+            r.addEventListener('change', (e) => {
+                answers[q.id-1] = parseInt(e.target.value);
+                updateStats();
+                renderGrids();
+            });
+        });
+
+        document.getElementById('prevBtn')?.addEventListener('click', () => {
+            if (currentIdx > 0) {
+                currentIdx--;
+                renderQuestion();
+                updateCurrentInfo();
+            }
+        });
+
+        document.getElementById('nextBtn')?.addEventListener('click', () => {
+            if (currentIdx < 64) {
+                currentIdx++;
+                renderQuestion();
+                updateCurrentInfo();
+            }
+        });
+
+        document.getElementById('reviewBtn')?.addEventListener('click', () => {
+            review[questions[currentIdx].id-1] = !review[questions[currentIdx].id-1];
+            renderGrids();
+            updateStats();
+        });
+    }
+
+    function renderGrids() {
+        const createGrid = (start, end, gridElement) => {
+            let html = '';
+            for (let i = start; i <= end; i++) {
+                let cls = 'q-btn';
+                if (answers[i-1] !== null) cls += ' answered';
+                if (review[i-1]) cls += ' review';
+                if (i === questions[currentIdx].id) cls += ' current';
+                html += `<button class="${cls}" data-qid="${i}">${i}</button>`;
+            }
+            gridElement.innerHTML = html;
+        };
+
+        createGrid(1, 10, gridGA);
+        createGrid(11, 35, gridM1);
+        createGrid(36, 65, gridM2);
+
+        document.querySelectorAll('.q-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const qid = parseInt(btn.dataset.qid);
+                currentIdx = qid - 1;
+                renderQuestion();
+                renderGrids();
+                updateCurrentInfo();
+            });
+        });
+
+        const gaAns = answers.slice(0, 10).filter(a => a !== null).length;
+        const m1Ans = answers.slice(10, 35).filter(a => a !== null).length;
+        const m2Ans = answers.slice(35, 65).filter(a => a !== null).length;
+        gaProgress.textContent = `${gaAns}/10`;
+        m1Progress.textContent = `${m1Ans}/25`;
+        m2Progress.textContent = `${m2Ans}/30`;
+    }
+
+    function updateStats() {
+        const ansCount = answers.filter(a => a !== null).length;
+        const revCount = review.filter(r => r).length;
+        answeredSpan.textContent = ansCount;
+        reviewSpan.textContent = revCount;
+        remainingSpan.textContent = 65 - ansCount;
+    }
+
+    function updateCurrentInfo() {
+        const q = questions[currentIdx];
+        currentQSpan.textContent = q.id;
+        currentMarksSpan.textContent = q.marks;
+        currentSecSpan.textContent = q.section;
+    }
+
+    function calculateResults() {
+        let total = 0, correct = 0, wrong = 0, unattempted = 0;
+        
+        questions.forEach((q, idx) => {
+            const ans = answers[idx];
+            if (ans === null) {
+                unattempted++;
+            } else if (ans === q.correct) {
+                correct++;
+                total += q.marks;
+            } else {
+                wrong++;
+                const penalty = q.marks === 1 ? 1/3 : 2/3;
+                total -= penalty;
+            }
+        });
+
+        total = Math.max(0, Math.round(total * 100) / 100);
+
+        summaryDiv.innerHTML = `
+            <div style="margin: 20px 0;">
+                <p>✅ Correct: <strong>${correct}</strong></p>
+                <p>❌ Wrong: <strong>${wrong}</strong></p>
+                <p>⏭️ Unattempted: <strong>${unattempted}</strong></p>
+            </div>
+        `;
+
+        resultBox.style.display = 'block';
+        finalScore.textContent = total.toFixed(2);
+        
+        scoreBreakdown.innerHTML = `
+            <div style="margin-top: 15px; font-size: 0.95rem;">
+                <p>Percentage: <strong>${((total / 130) * 100).toFixed(1)}%</strong></p>
+            </div>
+        `;
+
+        return { total, correct, wrong, unattempted };
+    }
+
+    function submitExam() {
+        if (submitted) return;
+        
+        const confirmMsg = `
+Are you sure you want to submit?
+
+${answers.filter(a => a !== null).length} answered
+${review.filter(r => r).length} marked for review
+${65 - answers.filter(a => a !== null).length} unattempted
+        `;
+
+        summaryDiv.innerHTML = confirmMsg.replace(/\n/g, '<br>');
+        resultBox.style.display = 'none';
+        modal.classList.add('show');
+    }
+
+    function resetExam() {
+        if (confirm('Are you sure? This will reset all your answers.')) {
+            answers.fill(null);
+            review.fill(null);
+            currentIdx = 0;
+            updateStats();
+            renderGrids();
+            renderQuestion();
+            updateCurrentInfo();
+        }
+    }
+
+    markReviewBtn.addEventListener('click', () => {
+        const q = questions[currentIdx];
+        review[q.id-1] = !review[q.id-1];
+        renderGrids();
+        updateStats();
+    });
+
+    submitBtn.addEventListener('click', submitExam);
+    resetBtn.addEventListener('click', resetExam);
+
+    confirmSubmit.addEventListener('click', () => {
+        submitted = true;
+        clearInterval(timerInterval);
+        calculateResults();
+        confirmSubmit.style.display = 'none';
+        cancelSubmit.textContent = 'CLOSE';
+        cancelSubmit.addEventListener('click', () => {
+            modal.classList.remove('show');
+        }, { once: true });
+    });
+
+    cancelSubmit.addEventListener('click', () => {
+        modal.classList.remove('show');
+    });
+
+    window.addEventListener('DOMContentLoaded', () => {
+        renderGrids();
+        renderQuestion();
+        updateStats();
+        updateCurrentInfo();
+        startTimer();
+    });
+</script>
+</body>
+</html>
